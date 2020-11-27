@@ -1,0 +1,31 @@
+{
+	"name": "ScheduleEvery1hr",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ADLSForEach",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"folders": [
+						"adls-fe-1",
+						"adls-fe-2",
+						"adls-fe-3"
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 60,
+				"startTime": "2020-11-24T05:12:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

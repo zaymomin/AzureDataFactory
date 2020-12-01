@@ -53,28 +53,115 @@
 						{
 							"name": "Wait1",
 							"type": "Wait",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"waitTimeInSeconds": 1
 							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "if",
+								"value": {
+									"value": "@item().name",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Set variable1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ADLSMetaForEachIfInput1",
+									"type": "DatasetReference",
+									"parameters": {
+										"fileName": {
+											"value": "@variables('if')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ADLSMetaForEachIfOutput",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
 			}
 		],
 		"parameters": {
-			"cars.csv": {
-				"type": "string",
-				"defaultValue": "true"
-			},
-			"ifCarsFolder": {
-				"type": "string",
-				"defaultValue": "ifTrue"
-			},
-			"ifPlanesFolder": {
-				"type": "string",
-				"defaultValue": "ifFalse"
+			"OutputFileName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"if": {
+				"type": "String",
+				"defaultValue": "cars"
 			}
 		},
 		"annotations": [],

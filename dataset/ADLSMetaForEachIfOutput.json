@@ -1,0 +1,22 @@
+{
+	"name": "ADLSMetaForEachIfOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AdlsLookUpFiles",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ADLSMetaForEachOutput",
+				"fileSystem": "zayyancontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

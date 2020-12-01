@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-zayyan-test"
+		},
+		"ADLSG2_to_ADF_accountKey": {
+			"value": ""
+		},
+		"AdlsLookUpFiles_accountKey": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"Link_Blob_to_Blob_connectionString": {
+			"value": ""
+		},
+		"Link_test_Blob_connectionString": {
+			"value": ""
+		},
+		"LinkedServiceSqlServer_connectionString": {
+			"value": ""
+		},
+		"LookupSqlDb_connectionString": {
+			"value": ""
+		},
+		"LookupSqltoContainer_connectionString": {
+			"value": ""
+		},
+		"adf_to_SQL_connectionString": {
+			"value": ""
+		},
+		"ADLSG2_to_ADF_properties_typeProperties_url": {
+			"value": "https://zayyanstoragetest2.dfs.core.windows.net"
+		},
+		"AdlsLookUpFiles_properties_typeProperties_url": {
+			"value": "https://zayyanstoragetest2.dfs.core.windows.net"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://zayyanstoragetest2.dfs.core.windows.net"
+		},
+		"ScheduleEvery1hr_properties_ADLSForEach_parameters_folders": {
+			"value": [
+				"adls-fe-1",
+				"adls-fe-2",
+				"adls-fe-3"
+			]
+		}
+	}
+}
